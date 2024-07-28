@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <AssemblyName>Chetch.$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>Chetch.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Chetch.Utilities">
+      <HintPath>..\..\Utilities\Utilities\bin\Debug\net8.0\Chetch.Utilities.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
