@@ -4,6 +4,7 @@ using System.Text.Json;
 using Chetch.Utilities;
 using System.Globalization;
 using MySql.Data.MySqlClient;
+using System.Net.NetworkInformation;
 
 namespace Chetch.Database
 {
@@ -139,10 +140,18 @@ namespace Chetch.Database
         }
 
         //returns date time object of a certain 'kind'
-        public DateTime GetDateTime(String fieldName, DateTimeKind kind = DateTimeKind.Unspecified)
+        public DateTime GetDateTime(String fieldName, DateTimeKind kind = DateTimeKind.Local)
         {
             DateTime dt = GetValue<DateTime>(fieldName, default(DateTime));
-            return DateTime.SpecifyKind(dt, kind);
+            if (dt == default(DateTime))
+            {
+                //don't specify kind if default because it doesn't make sense and can throw out json serialization
+                return dt;
+            }
+            else
+            {
+                return DateTime.SpecifyKind(dt, kind);
+            }
         }
     }
 
